@@ -1,6 +1,7 @@
 package com.hdoan.movie.controllers;
 
 import com.hdoan.movie.request.TheaterRequest;
+import com.hdoan.movie.request.TheaterSeatRequest;
 import com.hdoan.movie.services.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,16 @@ public class TheaterController {
     public ResponseEntity<String> addTheater(@RequestBody TheaterRequest request) {
         try {
             String result = theaterService.addTheater(request);
+            return new ResponseEntity<>(result, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/addTheaterSeat")
+    public ResponseEntity<String> addTheaterSeat(@RequestBody TheaterSeatRequest entryDto) {
+        try {
+            String result = theaterService.addTheaterSeat(entryDto);
             return new ResponseEntity<>(result, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
