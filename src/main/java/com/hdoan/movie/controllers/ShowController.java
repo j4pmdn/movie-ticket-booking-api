@@ -19,7 +19,7 @@ public class ShowController {
     @Autowired
     private ShowService showService;
 
-    @PostMapping("/")
+    @PostMapping("/addNew")
     public ResponseEntity<String> addShow(@RequestBody ShowRequest showRequest){
         try {
             String result = showService.addShow(showRequest);
